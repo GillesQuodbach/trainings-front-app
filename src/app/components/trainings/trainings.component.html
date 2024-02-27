@@ -1,0 +1,19 @@
+<div>
+  <button (click)="displayTraining()">Formations</button>
+  <ng-container *ngIf="listTrainings">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>NOM</th>
+        <th>DESCRIPTION</th>
+        <th>PRIX</th>
+      </tr>
+      <tr *ngFor="let training of listTrainings">
+        <td>{{ training.id }}</td>
+        <td>{{ training.name }}</td>
+        <td>{{ training.description }}</td>
+        <td>{{ training.price }}</td>
+      </tr>
+    </table>
+  </ng-container>
+</div>
