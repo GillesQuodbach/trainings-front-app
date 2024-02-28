@@ -10,7 +10,9 @@ import { Customer } from 'src/app/model/customer';
 export class CustomerComponent implements OnInit {
   constructor(public cartService: CartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cartService.retrieveData();
+  }
 
   onSaveCustomer(customer: Customer) {
     console.log(customer);

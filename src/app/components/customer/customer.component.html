@@ -56,12 +56,7 @@
             [(ngModel)]="cartService.getCustomer().email"
           />
         </div>
-        <button
-          type="submit"
-          [disabled]="!f.valid"
-          class="btn btn-primary"
-          (click)="(cartService.storeData)"
-        >
+        <button type="submit" [disabled]="!f.valid" class="btn btn-primary">
           Next
         </button>
       </div>

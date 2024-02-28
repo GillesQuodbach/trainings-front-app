@@ -7,7 +7,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CartService {
-  constructor() {}
+  constructor() {
+    this.retrieveData;
+  }
 
   listTrainings = [
     {
@@ -45,6 +47,7 @@ export class CartService {
 
   addTraining(training: Training) {
     this.listCart.push(training);
+    this.storeData();
   }
 
   removeCartItem(cartItem: CartItem) {
@@ -54,6 +57,7 @@ export class CartService {
     console.log(indexCartItemToRemove);
 
     this.listCart.splice(indexCartItemToRemove, 1);
+    this.storeData();
   }
 
   getCustomer() {
@@ -61,10 +65,19 @@ export class CartService {
   }
 
   storeData() {
-    const dataToStore = {
+    const savedData = {
       cart: this.listCart,
       customer: this.customer,
     };
-    localStorage.setItem('dataToStore', JSON.stringify(dataToStore));
+    localStorage.setItem('savedData', JSON.stringify(savedData));
+  }
+
+  retrieveData() {
+    const savedDataString = localStorage.getItem('savedData');
+    if (savedDataString) {
+      const savedData = JSON.parse(savedDataString);
+      this.listCart = savedData.cart;
+      this.customer = savedData.customer;
+    }
   }
 }
