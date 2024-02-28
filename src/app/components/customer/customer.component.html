@@ -1,9 +1,6 @@
 <div class="container">
   <div class="col-md-3">
-    <form
-      #f="ngForm"
-      (ngSubmit)="onSaveCustomer(f.value); cartService.storeData()"
-    >
+    <form #f="ngForm" (ngSubmit)="onSaveCustomer(f.value)">
       <div class="form-group">
         <label class="control-label">Nom : </label>
         <input
