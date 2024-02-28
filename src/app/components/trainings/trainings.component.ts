@@ -17,7 +17,20 @@ export class TrainingsComponent implements OnInit {
   }
 
   onAddToCart(training: Training) {
-    this.cartService.addTraining(training);
+    const articleInCart = this.cartService.listCart.find(
+      (item) => item.id == training.id
+    );
+    const existingId = this.cartService.listCart.findIndex(
+      (item) => item.id == articleInCart?.id
+    );
+    console.log('article in cart', articleInCart);
+
+    console.log('index article in cart', existingId);
+    if (existingId !== -1) {
+      this.cartService.listCart[existingId].quantity++;
+    } else {
+      this.cartService.addTraining(training);
+    }
     this.router.navigateByUrl('cart');
   }
 }

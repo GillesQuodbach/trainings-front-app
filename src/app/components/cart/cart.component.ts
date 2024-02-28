@@ -18,4 +18,12 @@ export class CartComponent implements OnInit {
     this.cartService.removeCartItem(cartItem);
     console.log(cartItem);
   }
+
+  calculateTotal(): number {
+    let total = 0;
+    for (let cartItem of this.cartService.listCart) {
+      total += cartItem.price * cartItem.quantity;
+    }
+    return total;
+  }
 }
