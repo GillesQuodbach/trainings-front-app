@@ -6,9 +6,15 @@ import { AppComponent } from './app.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from './components/cart/cart.component';
+import { NotFoundComponent } from './components/notFound/notfound.component';
 
 @NgModule({
-  declarations: [AppComponent, TrainingsComponent, CartComponent],
+  declarations: [
+    AppComponent,
+    TrainingsComponent,
+    CartComponent,
+    NotFoundComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
