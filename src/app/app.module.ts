@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from './components/cart/cart.component';
-import { NotFoundComponent } from './components/notFound/notfound.component';
+import { NotFoundComponent } from './components/notFound/notFound.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { NotFoundComponent } from './components/notFound/notfound.component';
     TrainingsComponent,
     CartComponent,
     NotFoundComponent,
+    CustomerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

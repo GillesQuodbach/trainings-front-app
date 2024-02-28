@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/model/cartItem';
@@ -8,7 +9,7 @@ import { CartItem } from 'src/app/model/cartItem';
 })
 export class CartComponent implements OnInit {
   listCart: CartItem[] | undefined;
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.listCart = this.cartService.listCart;
@@ -17,6 +18,10 @@ export class CartComponent implements OnInit {
   onRemoveFromCart(cartItem: CartItem) {
     this.cartService.removeCartItem(cartItem);
     console.log(cartItem);
+  }
+
+  goToForm() {
+    this.router.navigateByUrl('customer');
   }
 
   calculateTotal(): number {
