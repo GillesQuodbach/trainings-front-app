@@ -28,8 +28,11 @@ export class TrainingsComponent implements OnInit {
     console.log('index article in cart', existingId);
     if (existingId !== -1) {
       this.cartService.listCart[existingId].quantity++;
+      console.log(this.cartService.listCart[existingId]);
+      this.cartService.storeData();
     } else {
       this.cartService.addTraining(training);
+      this.cartService.storeData();
     }
     this.router.navigateByUrl('cart');
   }
