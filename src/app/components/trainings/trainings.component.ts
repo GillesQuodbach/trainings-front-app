@@ -14,7 +14,15 @@ export class TrainingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.listTrainings = this.cartService.listTrainings;
+   this.resumeListTraining()
   }
+
+  resumeListTraining(){
+    this.listTrainings?.forEach((item)=> {
+      item.quantity = 1
+    })
+  }
+
 
   onAddToCart(training: Training) {
     const articleInCart = this.cartService.listCart.find(
@@ -27,7 +35,7 @@ export class TrainingsComponent implements OnInit {
 
     console.log('index article in cart', existingId);
     if (existingId !== -1) {
-      this.cartService.listCart[existingId].quantity++;
+      this.cartService.listCart[existingId].quantity += training.quantity;
       console.log(this.cartService.listCart[existingId]);
       this.cartService.storeData();
     } else {
