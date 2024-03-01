@@ -25,7 +25,11 @@ export class CartComponent implements OnInit {
   }
 
   goToForm() {
+    if (this.listCart?.length === 0) {
+      alert("votre panier est vide")
+    } else {
     this.router.navigateByUrl('customer');
+    }
   }
 
   calculateTotal(): number {
