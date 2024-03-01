@@ -9,18 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./customer.component.css'],
 })
 export class CustomerComponent implements OnInit {
+  customer: Customer | undefined;
   constructor(public cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
-    this.cartService.retrieveData();
+    this.customer = this.cartService.customer;
   }
 
   onSaveCustomer(customer: Customer) {
+    this.customer = this.cartService.customer;
     this.cartService.storeData();
-    console.log(customer);
-  }
-
-  goToResume() {
+    console.log('onSaveCustome()', customer);
     this.router.navigateByUrl('resume');
   }
 }

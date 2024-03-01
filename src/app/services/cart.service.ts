@@ -62,14 +62,6 @@ export class CartService {
     this.storeData();
   }
 
-  getCustomer() {
-    return this.customer;
-  }
-
-  getCart() {
-    return this.listCart;
-  }
-
   storeData() {
     const savedData = {
       cart: this.listCart,
