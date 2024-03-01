@@ -45,6 +45,8 @@ export class CartService {
     phone: '',
   };
 
+  checkOutData = { cart: this.listCart, customer: this.customer };
+
   addTraining(training: Training) {
     this.listCart.push(training);
     this.storeData();
@@ -62,6 +64,10 @@ export class CartService {
 
   getCustomer() {
     return this.customer;
+  }
+
+  getCart() {
+    return this.listCart;
   }
 
   storeData() {
