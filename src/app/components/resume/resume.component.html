@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <h1>Récapitulatif de commande</h1>
     <ng-container *ngIf="listCart">
       <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -100,7 +101,7 @@
             </div>
           </div>
 
-          <button class="btn btn-success btn-lg btn-block" type="submit">
+          <button class="btn btn-success btn-lg btn-block" type="button" (click)="goToHome()">
             Merci de votre achat
           </button>
         </form>

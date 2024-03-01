@@ -30,4 +30,9 @@ export class ResumeComponent implements OnInit {
     }
     return total;
   }
+
+  goToHome(){
+    localStorage.removeItem("savedData");
+    window.location.reload()
+  }
 }
