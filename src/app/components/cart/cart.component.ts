@@ -10,8 +10,8 @@ import { Customer } from 'src/app/model/customer';
 })
 export class CartComponent implements OnInit {
   listCart: CartItem[] | undefined;
-
-  constructor(private cartService: CartService, private router: Router) {}
+  // test lazygit
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.retrieveData();
@@ -28,7 +28,7 @@ export class CartComponent implements OnInit {
     if (this.listCart?.length === 0) {
       alert("votre panier est vide")
     } else {
-    this.router.navigateByUrl('customer');
+      this.router.navigateByUrl('customer');
     }
   }
 
