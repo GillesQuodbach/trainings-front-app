@@ -8,7 +8,7 @@
           name="name"
           required
           class="form-control"
-          [(ngModel)]="cartService.customer.name"
+          [(ngModel)]="cartService.getCustomer().name"
         />
       </div>
       <div class="form-group">
@@ -18,7 +18,7 @@
           name="firstName"
           required
           class="form-control"
-          [(ngModel)]="cartService.customer.firstName"
+          [(ngModel)]="cartService.getCustomer().firstName"
         />
       </div>
 
@@ -29,7 +29,7 @@
           name="address"
           required
           class="form-control"
-          [(ngModel)]="cartService.customer.address"
+          [(ngModel)]="cartService.getCustomer().address"
         />
 
         <div class="form-group">
@@ -39,7 +39,7 @@
             name="phone"
             required
             class="form-control"
-            [(ngModel)]="cartService.customer.phone"
+            [(ngModel)]="cartService.getCustomer().phone"
           />
         </div>
 
@@ -50,7 +50,7 @@
             name="email"
             required
             class="form-control"
-            [(ngModel)]="cartService.customer.email"
+            [(ngModel)]="cartService.getCustomer().email"
           />
         </div>
         <button type="submit" [disabled]="!f.valid" class="btn btn-primary">

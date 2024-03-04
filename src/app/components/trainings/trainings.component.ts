@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Training } from 'src/app/model/training';
 import { CartService } from 'src/app/services/cart.service';
-import { CartItem } from 'src/app/model/cartItem';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-trainings',
@@ -13,35 +12,11 @@ export class TrainingsComponent implements OnInit {
   constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
-    this.listTrainings = this.cartService.listTrainings;
-   this.resumeListTraining()
+    this.listTrainings = this.cartService.getTraining();
   }
-
-  resumeListTraining(){
-    this.listTrainings?.forEach((item)=> {
-      item.quantity = 1
-    })
-  }
-
 
   onAddToCart(training: Training) {
-    const articleInCart = this.cartService.listCart.find(
-      (item) => item.id == training.id
-    );
-    const existingId = this.cartService.listCart.findIndex(
-      (item) => item.id == articleInCart?.id
-    );
-    console.log('article in cart', articleInCart);
-
-    console.log('index article in cart', existingId);
-    if (existingId !== -1) {
-      this.cartService.listCart[existingId].quantity += training.quantity;
-      console.log(this.cartService.listCart[existingId]);
-      this.cartService.storeData();
-    } else {
-      this.cartService.addTraining(training);
-      this.cartService.storeData();
-    }
+    this.cartService.addTraining(training);
     this.router.navigateByUrl('cart');
   }
 }

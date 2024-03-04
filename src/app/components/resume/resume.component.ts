@@ -17,22 +17,16 @@ export class ResumeComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.retrieveData();
-    this.listCart = this.cartService.listCart;
-    this.customer = this.cartService.customer;
-    // console.log('listCart', this.listCart);
-    console.log('customer', this.customer);
+    this.listCart = this.cartService.getCart();
+    this.customer = this.cartService.getCustomer();
   }
 
-  calculateTotal(): number {
-    let total = 0;
-    for (let cartItem of this.cartService.listCart) {
-      total += cartItem.price * cartItem.quantity;
-    }
-    return total;
+  totalOrder() {
+    return this.cartService.calculateTotalOrder();
   }
 
-  goToHome(){
-    localStorage.removeItem("savedData");
-    window.location.reload()
+  goToHome() {
+    localStorage.removeItem('savedData');
+    window.location.reload();
   }
 }

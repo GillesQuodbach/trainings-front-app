@@ -28,8 +28,7 @@
           </li>
         </ul>
         <div class="d-flex justify-content-between">
-          <strong>Total commande:</strong
-          ><strong>{{ calculateTotal() }} €</strong>
+          <strong>Total commande:</strong><strong>{{ totalOrder() }} €</strong>
         </div>
       </div>
     </ng-container>
@@ -101,7 +100,11 @@
             </div>
           </div>
 
-          <button class="btn btn-success btn-lg btn-block" type="button" (click)="goToHome()">
+          <button
+            class="btn btn-success btn-lg btn-block"
+            type="button"
+            (click)="goToHome()"
+          >
             Merci de votre achat
           </button>
         </form>

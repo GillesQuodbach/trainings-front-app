@@ -11,6 +11,7 @@ export class CartService {
     this.retrieveData;
   }
 
+  // Liste des formations
   listTrainings = [
     {
       id: 1,
@@ -35,8 +36,10 @@ export class CartService {
     },
   ];
 
+  // Panier
   listCart: CartItem[] = [];
 
+  // Client
   customer: Customer = {
     name: '',
     firstName: '',
@@ -46,12 +49,50 @@ export class CartService {
   };
 
   checkOutData = { cart: this.listCart, customer: this.customer };
-
+  storeData() {
+    const savedData = {
+      cart: this.listCart,
+      customer: this.customer,
+    };
+    localStorage.setItem('savedData', JSON.stringify(savedData));
+  }
+  // Ajout formation
   addTraining(training: Training) {
-    this.listCart.push(training);
+    const articleInCart = this.listCart.find((item) => item.id == training.id);
+    const existingId = this.listCart.findIndex(
+      (item) => item.id == articleInCart?.id
+    );
+    if (existingId !== -1) {
+      this.listCart[existingId].quantity += training.quantity;
+      console.log(this.listCart[existingId]);
+      this.storeData();
+    } else {
+      this.listCart.push(training);
+      this.storeData();
+    }
+  }
+
+  addCustomer(customer: Customer) {
+    this.customer = this.getCustomer();
     this.storeData();
   }
 
+  // retrieve training
+  getTraining() {
+    return this.listTrainings;
+  }
+
+  // retrieve customer
+  getCustomer() {
+    return this.customer;
+  }
+
+  // retrieve cart
+  getCart() {
+    return this.listCart;
+  }
+
+  // remove from training from cart
   removeCartItem(cartItem: CartItem) {
     const indexCartItemToRemove = this.listCart.findIndex(
       (item) => item.id == +cartItem.id
@@ -62,14 +103,7 @@ export class CartService {
     this.storeData();
   }
 
-  storeData() {
-    const savedData = {
-      cart: this.listCart,
-      customer: this.customer,
-    };
-    localStorage.setItem('savedData', JSON.stringify(savedData));
-  }
-
+  // recupère les données du localStorage
   retrieveData() {
     const savedDataString = localStorage.getItem('savedData');
     if (savedDataString) {
@@ -77,5 +111,14 @@ export class CartService {
       this.listCart = savedData.cart;
       this.customer = savedData.customer;
     }
+    console.log('savedData', savedDataString);
+  }
+
+  calculateTotalOrder(): number {
+    let total = 0;
+    for (let cartItem of this.listCart) {
+      total += cartItem.price * cartItem.quantity;
+    }
+    return total;
   }
 }

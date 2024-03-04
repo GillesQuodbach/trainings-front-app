@@ -2,7 +2,6 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/model/cartItem';
-import { Customer } from 'src/app/model/customer';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -15,28 +14,22 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.retrieveData();
-    this.listCart = this.cartService.listCart;
+    this.listCart = this.cartService.getCart();
   }
 
   onRemoveFromCart(cartItem: CartItem) {
     this.cartService.removeCartItem(cartItem);
-    this.cartService.storeData();
-    console.log(cartItem);
   }
 
   goToForm() {
     if (this.listCart?.length === 0) {
-      alert("votre panier est vide")
+      alert('votre panier est vide');
     } else {
-    this.router.navigateByUrl('customer');
+      this.router.navigateByUrl('customer');
     }
   }
 
   calculateTotal(): number {
-    let total = 0;
-    for (let cartItem of this.cartService.listCart) {
-      total += cartItem.price * cartItem.quantity;
-    }
-    return total;
+    return this.cartService.calculateTotalOrder();
   }
 }
