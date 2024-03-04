@@ -9,8 +9,8 @@ import { CartItem } from 'src/app/model/cartItem';
 })
 export class CartComponent implements OnInit {
   listCart: CartItem[] | undefined;
-
-  constructor(private cartService: CartService, private router: Router) {}
+  // test lazygit
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.retrieveData();
